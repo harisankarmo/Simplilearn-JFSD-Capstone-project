@@ -1,0 +1,5 @@
+package movietcktbooking.com.service;
+
+public class BookingService {
+
+}

@@ -1,0 +1,33 @@
+package movietcktbooking.com.service;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import movietcktbooking.com.entity.Show;
+import movietcktbooking.com.entity.Theatre;
+import movietcktbooking.com.repository.ShowRepository;
+
+@Service
+public class ShowService {
+	
+	@Autowired
+	ShowRepository showRepo;
+	
+	public String storeShow(Show show) {
+		Optional<Show> result = showRepo.findByTheatreAndMovie(show.getTheatreId(), show.getMovieId(), show.getStartTime());
+		
+		if(result.isPresent()) {
+			return "Show with the same theatre, movie and start time already exists";
+		} else {
+			showRepo.save(show);
+			return "Show saved successfully";
+		}		
+	}
+	
+	public List<Show> findAllShows() {
+		return showRepo.findAll();
+	}
+}

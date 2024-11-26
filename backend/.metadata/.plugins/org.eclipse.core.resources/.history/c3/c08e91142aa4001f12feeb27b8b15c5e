@@ -1,0 +1,17 @@
+package movietcktbooking.com.repository;
+
+import java.util.Optional;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
+
+import movietcktbooking.com.entity.Movie;
+import movietcktbooking.com.entity.Theatre;
+
+@Repository
+public interface MovieRepository extends JpaRepository<Movie, String> {
+	@Query("SELECT m FROM Movie t WHERE m.title = :title AND t.lang = :language")
+	Optional<Theatre> findByTitleAndLang(@Param("title") String name, @Param("language") String location);
+}

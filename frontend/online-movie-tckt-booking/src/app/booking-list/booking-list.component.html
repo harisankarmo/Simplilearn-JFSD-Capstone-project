@@ -1,0 +1,45 @@
+<!-- movie-list.component.html -->
+<div class="container mt-5">
+    <h2>List of Bookings</h2>    
+  
+    <!-- Display error or success message -->
+    <div *ngIf="msgType === 'error'" class="errmsg">
+      {{ msg }}
+    </div>
+    <div *ngIf="msgType === 'success'" class="successmsg">
+      {{ msg }}
+    </div>
+  
+    <!-- Movies Table -->
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Booking ID</th>
+          <th>Theatre</th>
+          <th>Movie</th>
+          <th>Customer Name</th>
+          <th>Email</th>
+          <th>Phone No</th>
+          <th>Show Date&Time</th>  
+          <th>No of Tickets</th>  
+          <th>Total Price</th>      
+          <th>Order Status</th>        
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let book of bookings; let i = index">
+          <td>{{ book.bookingId }}</td>
+          <td>{{ book.show.theatre.name }} - {{ book.show.theatre.location }}</td>
+          <td>{{ book.show.movie.title }}</td>
+          <td>{{ book.customerName }}</td>
+          <td>{{ book.customerEmail }}</td>
+          <td>{{ book.customerPhoneNumber }}</td>
+          <td>{{ book.show.showDate | date }} {{ book.show.startTime }}</td>
+          <td>{{ book.noOfTickets  }}</td>          
+          <td>{{ book.totalPrice  }}</td>
+          <td>{{ book.status  }}</td>          
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  

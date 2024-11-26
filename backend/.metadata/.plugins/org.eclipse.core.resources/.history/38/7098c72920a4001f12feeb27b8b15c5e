@@ -1,0 +1,24 @@
+package movietcktbooking.com.service;
+
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import movietcktbooking.com.entity.Theatre;
+import movietcktbooking.com.repository.TheatreRepository;
+
+@Service
+public class TheatreService {
+	
+	@Autowired
+	TheatreRepository theatreRepo;
+	
+	public String storeTheatre(Theatre theatre) {
+		Optional<Theatre> result = theatreRepo.findById(theatre.getTheatreId());
+		return null;
+	}
+	
+	
+
+}

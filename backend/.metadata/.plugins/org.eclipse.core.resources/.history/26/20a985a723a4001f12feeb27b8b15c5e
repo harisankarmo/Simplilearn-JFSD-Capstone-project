@@ -1,0 +1,14 @@
+package movietcktbooking.com.repository;
+
+import java.util.Optional;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+import movietcktbooking.com.entity.Theatre;
+import movietcktbooking.com.entity.User;
+
+@Repository
+public interface TheatreRepository extends JpaRepository<Theatre, Integer> {
+	Optional<Theatre> findByName(String name);
+}

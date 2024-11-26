@@ -1,0 +1,17 @@
+package movietcktbooking.com.repository;
+
+import java.util.Optional;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
+
+import movietcktbooking.com.entity.Show;
+import movietcktbooking.com.entity.Theatre;
+
+@Repository
+public interface ShowRepository extends JpaRepository<Show, Integer> {
+	@Query("SELECT s FROM Show s WHERE s.theatreId = :theatreId AND s.movieId = :movieId AND s.startTime = :startTime")
+	Optional<Theatre> findByNameAndLocation(@Param("name") String name, @Param("location") String location);
+}

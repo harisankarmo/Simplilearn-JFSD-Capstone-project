@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NMS Cinemas</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    /* Custom Styles */
+    .hero-section {
+      background: url('https://www.shutterstock.com/shutterstock/photos/1233484840/display_1500/stock-vector-film-strip-roll-frame-cinema-on-the-blue-background-vector-cinema-festival-poster-banner-or-flyer-1233484840.jpg') no-repeat center center/cover;
+      color: #fff;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+      height: 60vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    .hero-section h1 {
+      font-size: 4rem;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+    .hero-section p {
+      font-size: 1.2rem;
+    }
+    .content-section {
+      padding: 40px 0;
+    }
+    .content-section h2 {
+      margin-bottom: 30px;
+    }
+    .footer {
+      background-color: #222;
+      color: #ddd;
+      padding: 20px 0;
+    }
+    .footer a {
+      color: #ddd;
+      text-decoration: none;
+    }
+    .footer a:hover {
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+      <a class="navbar-brand" href="#">NMS Cinemas</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <!-- Navigation Links for admin -->
+      <div class="collapse navbar-collapse" id="navbarNav" *ngIf="isAdminRoute">
+        <ul class="navbar-nav ms-auto">
+          <!-- Dashboard -->
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="./admin/dashboard">Dashboard</a>
+          </li>
+          
+          <!-- Manage Theatres Dropdown -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="./admin/theatres" id="navbarDropdownTheatres" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Manage Theatres
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdownTheatres">
+              <li><a class="dropdown-item" href="./admin/theatres/create">Add Theatre</a></li>
+              <li><a class="dropdown-item" href="./admin/theatres">Theatre List</a></li>
+            </ul>
+          </li>
+          
+          <!-- Manage Movies Dropdown -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="./admin/movies" id="navbarDropdownMovies" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Manage Movies
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMovies">
+              <li><a class="dropdown-item" href="./admin/movies/create">Add Movie</a></li>
+              <li><a class="dropdown-item" href="./admin/theatres">Movie List</a></li>
+            </ul>
+          </li>
+          
+          <!-- Manage Shows Dropdown -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="./admin/shows" id="navbarDropdownShows" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Manage Shows
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdownShows">
+              <li><a class="dropdown-item" href="./admin/shows/create">Add Show</a></li>
+              <li><a class="dropdown-item" href="./admin/shows">Show List</a></li>
+            </ul>
+          </li>
+          
+          <!-- Bookings Report -->
+          <li class="nav-item">
+            <a class="nav-link" href="./admin/bookings">Bookings Report</a>
+          </li>
+
+          <!-- Settings -->
+          <li class="nav-item">
+            <a class="nav-link" href="#">Settings</a>
+          </li>         
+          
+          <!-- Logout -->
+          <li class="nav-item">
+            <a class="nav-link text-danger" (click)="logOut()">Logout</a>
+          </li>
+        </ul>
+      </div>
+
+
+      <!-- Navigation Links for customer -->
+      <div class="collapse navbar-collapse" id="navbarNav" *ngIf="!isAdminRoute">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/home">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/movies">Movies</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/theatres">Theatres</a>
+          </li>          
+          
+          <li class="nav-item" *ngIf="!isLoggedIn">
+            <a class="nav-link btn btn-primary text-white px-4" routerLink="/login">Login</a>
+          </li>
+          
+          <li class="nav-item" *ngIf="isLoggedIn">
+            <a class="nav-link btn btn-primary text-white px-4" (click)="logOut()">Logout</a>
+          </li>       
+
+          <li class="nav-item" *ngIf="isLoggedIn">
+            <a class="nav-link">Hello, {{userName}}</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero-section text-center" *ngIf="!isAdminRoute">
+    <div>
+      <h1>Welcome to NMS Cinemas</h1>
+      <p class="lead">Your ultimate destination for cinematic experiences. Book your tickets now!</p>
+      <a href="#" class="btn btn-warning btn-lg mt-4">Explore Now</a>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <main id="main-content" class="content-section container">   
+    <router-outlet></router-outlet>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container text-center">
+      <p>&copy; 2024 NMS Cinemas. All rights reserved.</p>
+      <p>
+        <a href="#">Privacy Policy</a> | 
+        <a href="#">Terms of Service</a> | 
+        <a href="#">Contact Us</a>
+      </p>
+    </div>
+  </footer>
+
+  <!-- Bootstrap Bundle with Popper -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

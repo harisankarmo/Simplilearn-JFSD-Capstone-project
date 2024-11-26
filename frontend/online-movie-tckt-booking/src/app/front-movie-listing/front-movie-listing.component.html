@@ -1,0 +1,89 @@
+<div class="container my-4">
+    <!-- Filter Box -->
+    <div class="card mb-4 shadow-sm">
+      <div class="card-body">
+        <h5 class="card-title">Filter Shows</h5>
+        <form [formGroup]="filterForm" (ngSubmit)="filterShows()">
+          <div class="row">
+            <!-- Location Dropdown -->
+            <div class="col-md-5 mb-3">
+              <label for="location" class="form-label">Location</label>
+              <select id="location" class="form-select" formControlName="location">
+                <option value="" >Select Location</option>
+                <option *ngFor="let th of theatres" [value]="th.theatreId">{{ th.location }}</option>
+              </select>
+            </div>
+  
+            <!-- Movie Title Dropdown -->
+            <div class="col-md-5 mb-3">
+              <label for="movie" class="form-label">Movie Title</label>
+              <select id="movie" class="form-select" formControlName="movie">
+                <option value="" >Select Movie</option>
+                <option *ngFor="let movie of movies" [value]="movie.movieId">{{ movie.title }}</option>
+              </select>
+            </div>
+  
+            <!-- Submit Button -->
+            <div class="col-md-2 d-flex align-items-end">
+              <button type="submit" class="btn btn-primary w-100">Filter</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  
+    <!-- Show Listing -->
+    <div class="row">
+      <div *ngFor="let show of filteredShows" class="col-md-3 mb-4">
+        <div class="card h-100 shadow-sm">
+          <img src="{{ show.movie.movieImage }}" class="card-img-top img-thumbnail" style="height:250px; width:250px;" alt="{{ show.movie.title }}">
+          <div class="card-body">
+            <h5 class="card-title">{{ show.movie.title }}</h5>            
+            <p class="card-text">
+              <strong>Starring:</strong> {{ show.movie.starer }}  <br>  
+              <strong>Location:</strong> {{ show.theatre.name }} - {{ show.theatre.location }} <br>
+              <strong>Time:</strong> {{ show.startTime }}
+            </p>
+          </div>
+          <div class="card-footer text-center">
+            <button class="btn btn-primary" (click)="openBookingModal(show)">Book Now</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Booking Modal -->
+    <div class="modal fade" id="bookingModal" tabindex="-1" aria-labelledby="bookingModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="bookingModalLabel">Book Tickets</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form [formGroup]="bookingForm" (ngSubmit)="submitBooking()">
+                <input type="hidden" formControlName="showId">
+              <div class="mb-3">
+                <label for="name" class="form-label">Name</label>
+                <input type="text" id="name" formControlName="name" class="form-control" placeholder="Enter your name">
+              </div>
+              <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" id="email" formControlName="email" class="form-control" placeholder="Enter your email">
+              </div>
+              <div class="mb-3">
+                <label for="phone" class="form-label">Phone Number</label>
+                <input type="tel" id="phone" formControlName="phone" class="form-control" placeholder="Enter your phone number">
+              </div>
+              <div class="mb-3">
+                <label for="tickets" class="form-label">Number of Tickets</label>
+                <input type="number" id="tickets" formControlName="tickets" class="form-control" placeholder="Enter number of tickets" min="1">
+              </div>
+              <button type="submit" class="btn btn-success w-100">Submit</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

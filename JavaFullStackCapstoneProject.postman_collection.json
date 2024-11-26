@@ -1,0 +1,287 @@
+{
+	"info": {
+		"_postman_id": "2e4cf75a-d897-43ff-a74a-07a0be1bc173",
+		"name": "JavaFullStackCapstoneProject",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "2439995"
+	},
+	"item": [
+		{
+			"name": "User SignUp",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\r\n    \"email\" : \"akash@simplilearn.in\", \r\n    \"name\" : \"Akash\"   ,\r\n    \"password\" : \"Akash@#1980\",\r\n    \"role\" : \"customer\"\r\n    \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9090/user/signup",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"user",
+						"signup"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User SignIn",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Add Theatre",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\" : \"NMS Cinemas\",\r\n    \"location\" : \"Delhi\",\r\n    \"capacity\" : 180\r\n\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9090/theatre/add",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"theatre",
+						"add"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Theatres",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9090/theatre/list",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"theatre",
+						"list"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Movie",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\" : \"Do Patti\",\r\n    \"genre\" : \"thriller\",\r\n    \"language\" : \"hindi\",\r\n    \"starer\" : \"\",\r\n    \"description\" : \"The film opens with Saumya and Dhruv at Devipur village police station in Uttarakhand, where Saumya accuses Dhruv of attempting to kill her. The story flashes back to an earlier incident when police officer Vidya Jyothi (VJ) receives a call regarding domestic abuse but finds it dismissed as a false alarm. However, Maaji, a maternal figure to Saumya, privately reveals that she had placed the call out of concern, explaining that Saumya gets brutally abused by her husband, Dhruv. Though Saumya decides to remain silent about it. \",\r\n    \"movieImage\" : \"https://upload.wikimedia.org/wikipedia/en/thumb/4/47/Dont_Move_2024_film_poster.jpg/220px-Dont_Move_2024_film_poster.jpg\",\r\n    \"releaseDate\" : \"2024-04-03\"\r\n\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9090/movies/add",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"movies",
+						"add"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Movies",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9090/movies/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"movies",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Movie By Id",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:9090/movies/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"movies",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Show",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"theatreId\" : 6,\r\n    \"movieId\" : 2,\r\n    \"showDate\" : \"2024-12-01\",\r\n    \"startTime\" : \"20:30\",\r\n    \"endTime\" : \"22:15\",\r\n    \"ticketPrice\" : 200\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9090/shows/add",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"shows",
+						"add"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get List of Shows",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9090/shows/list",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"shows",
+						"list"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Booking",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\r\n    \"userId\" : null,\r\n    \"customerEmail\": \"harish.mohanty@gmail.com\",\r\n    \"customerName\" : \"Harisankar Mohanty\",\r\n    \"customerPhoneNumber\" : \"8218305318r\",\r\n    \"show\" : {\r\n        \"showId\": 2\r\n    },\r\n    \"noOfTickets\": 2,\r\n    \"totalPrice\" : 400,\r\n    \"bookingDate\" : \"2024-11-26\",\r\n    \"status\" : \"confirmed\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9090/bookings/add",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"bookings",
+						"add"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Bookings",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		}
+	]
+}

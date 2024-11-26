@@ -1,0 +1,5 @@
+package movietcktbooking.com.entity;
+
+public class Theatre {
+
+}

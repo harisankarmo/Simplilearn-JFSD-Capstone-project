@@ -1,0 +1,128 @@
+<div class="container mt-5">
+
+    <a href="./admin/movies">List of Movies</a>
+  
+    <h2>Add Movie</h2>
+  
+    <form [formGroup]="movieForm" (ngSubmit)="onSubmit()">
+      <!-- Genre Field -->
+      <div class="form-group">
+        <label for="genre">Genre</label>
+        <input
+          id="genre"
+          formControlName="genre"
+          class="form-control"
+          [class.is-invalid]="isSubmitted && f['genre'].invalid"
+        />
+        <div *ngIf="isSubmitted && f['genre'].invalid" class="invalid-feedback">
+          <span *ngIf="f['genre'].errors?.['required']">Genre is required.</span>
+          <span *ngIf="f['genre'].errors?.['minlength']">Genre must be at least 2 characters long.</span>
+        </div>
+      </div>
+  
+      <!-- Language Field -->
+      <div class="form-group">
+        <label for="lang">Language</label>
+        <input
+          id="lang"
+          formControlName="language"
+          class="form-control"
+          [class.is-invalid]="isSubmitted && f['lang'].invalid"
+        />
+        <div *ngIf="isSubmitted && f['lang'].invalid" class="invalid-feedback">
+          <span *ngIf="f['lang'].errors?.['required']">Language is required.</span>
+          <span *ngIf="f['lang'].errors?.['minlength']">Language must be at least 2 characters long.</span>
+        </div>
+      </div>
+  
+      <!-- Release Date Field -->
+      <div class="form-group">
+        <label for="release_date">Release Date</label>
+        <input
+          id="release_date"
+          type="date"
+          formControlName="releaseDate"
+          class="form-control"
+          [class.is-invalid]="isSubmitted && f['release_date'].invalid"
+        />
+        <div *ngIf="isSubmitted && f['release_date'].invalid" class="invalid-feedback">
+          <span *ngIf="f['release_date'].errors?.['required']">Release date is required.</span>
+        </div>
+      </div>
+  
+      <!-- Title Field -->
+      <div class="form-group">
+        <label for="title">Title</label>
+        <input
+          id="title"
+          formControlName="title"
+          class="form-control"
+          [class.is-invalid]="isSubmitted && f['title'].invalid"
+        />
+        <div *ngIf="isSubmitted && f['title'].invalid" class="invalid-feedback">
+          <span *ngIf="f['title'].errors?.['required']">Title is required.</span>
+          <span *ngIf="f['title'].errors?.['minlength']">Title must be at least 2 characters long.</span>
+        </div>
+      </div>
+  
+      <!-- Description Field -->
+      <div class="form-group">
+        <label for="description">Description</label>
+        <textarea
+          id="description"
+          formControlName="description"
+          class="form-control"
+          [class.is-invalid]="isSubmitted && f['description'].invalid"
+        ></textarea>
+        <div *ngIf="isSubmitted && f['description'].invalid" class="invalid-feedback">
+          <span *ngIf="f['description'].errors?.['required']">Description is required.</span>
+          <span *ngIf="f['description'].errors?.['minlength']">Description must be at least 10 characters long.</span>
+        </div>
+      </div>
+  
+      <!-- Starer Field -->
+      <div class="form-group">
+        <label for="starer">Starer</label>
+        <textarea
+          id="starer"
+          formControlName="starer"
+          class="form-control"
+          [class.is-invalid]="isSubmitted && f['starer'].invalid"
+        ></textarea>
+        <div *ngIf="isSubmitted && f['starer'].invalid" class="invalid-feedback">
+          <span *ngIf="f['starer'].errors?.['required']">Starer is required.</span>
+          <span *ngIf="f['starer'].errors?.['minlength']">Starer must be at least 3 characters long.</span>
+        </div>
+      </div>
+  
+      <!-- Movie Image URL Field -->
+    <div class="form-group">
+        <label for="movie_image">Movie Image URL</label>
+        <input
+        id="movie_image"
+        formControlName="movieImage"
+        class="form-control"
+        [class.is-invalid]="isSubmitted && f['movieImage'].invalid"
+        placeholder="Enter the image URL"
+        />
+        <div *ngIf="isSubmitted && f['movieImage'].invalid" class="invalid-feedback">
+        <span *ngIf="f['movieImage'].errors?.['required']">Image URL is required.</span>
+        <span *ngIf="f['movieImage'].errors?.['minlength']">Image URL must be at least 5 characters long.</span>
+        </div>
+    </div>
+  
+      <!-- Submit Button -->
+      <button type="submit" class="btn btn-primary mt-3" [disabled]="movieForm.invalid">Submit</button>
+    </form>
+  
+    <!-- Success/Error Message -->
+    <div *ngIf="msgType == 'error'" class="errmsg">
+      {{ msg }}
+    </div>
+  
+    <div *ngIf="msgType == 'success'" class="successmsg">
+      {{ msg }}
+    </div>
+  
+  </div>
+  

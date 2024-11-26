@@ -1,0 +1,32 @@
+package movietcktbooking.com.service;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import movietcktbooking.com.entity.Movie;
+import movietcktbooking.com.repository.MovieRepository;
+
+@Service
+public class MovieService {
+	@Autowired
+	MovieRepository movieRepo;
+	
+	public String storeMovie(Movie movie) {
+		Optional<Movie> result = movieRepo.findByTitleAndLang(movie.getTitle(), movie.getLanguage());
+		
+		if(result.isPresent()) {
+			return "Theatre with the same name and location already exists";
+		} else {
+			theatreRepo.save(theatre);
+			return "Theatre saved successfully";
+		}		
+	}
+	
+	public List<Theatre> findAllTheatres() {
+		return theatreRepo.findAll();
+	}
+
+}
